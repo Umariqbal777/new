@@ -33,7 +33,7 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
 .chapter.current{visibility:visible;z-index:10;pointer-events:auto}
 .chapter.moving{visibility:visible;will-change:transform,opacity}
 .chapter.lift{border-radius:26px 26px 0 0;box-shadow:0 -30px 70px rgba(0,0,0,.22)}
-.chapter.moving .timeline-card,.chapter.moving .quiz{backdrop-filter:none}
+.chapter.moving .timeline-card{backdrop-filter:none}
 .strip-label{display:none}
 .chapter-inner{width:min(1440px,100%);min-height:100%;position:relative}
 #home .chapter-inner{height:100%}
@@ -48,7 +48,7 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
 .flower{filter:drop-shadow(0 8px 14px rgba(0,0,0,.05))}
 .flower svg{width:100%;height:100%}
 
-/* ===== HOME (editorial split: girlfriend / portrait / best friend) ===== */
+/* ===== HOME ===== */
 .fl{position:absolute;height:auto;aspect-ratio:5/6;pointer-events:none;overflow:visible}
 .glow{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .6s}
 .glow.g-r{background:radial-gradient(ellipse 40% 50% at 50% 55%,rgba(216,41,61,.22),transparent 70%)}
@@ -118,20 +118,38 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
 .for-center .display{font-size:34px}
 .for-center .reveal{display:block;margin-top:9px;font-size:12px;color:var(--muted)}
 
-.us-wrap{display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center}
-.quiz{border:1px solid var(--line);background:#fff8;padding:28px;min-height:390px}
-.quiz h3{font-family:Georgia,serif;font-size:31px;font-weight:500;margin:10px 0 22px}
-.answers{display:grid;gap:9px}
-.answer{border:1px solid var(--line);background:transparent;text-align:left;padding:14px 16px;cursor:pointer;transition:.25s}
-.answer:hover{background:var(--ink);color:#fff}
-.quiz-result{min-height:28px;margin-top:18px;font-size:12px;font-weight:800}
-.choices{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.choice{min-height:170px;border:1px solid var(--line);padding:20px;cursor:pointer;position:relative;overflow:hidden;transition:.4s}
-.choice:hover{transform:translateY(-5px);box-shadow:0 18px 35px rgba(0,0,0,.08)}
-.choice.rose{background:#fff0f2} .choice.sun{background:#fff8df}
-.choice b{font-family:Georgia,serif;font-size:27px;font-weight:500}
-.choice small{display:block;margin-top:10px;color:var(--muted)}
-.choice .emoji{position:absolute;right:16px;bottom:12px;font-size:30px}
+/* ===== LOVE LETTER ===== */
+.env-wrap{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;width:100%;padding:10px 0 80px}
+.envelope{position:relative;width:min(380px,82vw);aspect-ratio:3/2;margin-top:34px;border:0;background:none;cursor:pointer;padding:0;perspective:900px;animation:floaty 3.6s ease-in-out infinite}
+.envelope>span{position:absolute;display:block}
+.env-back{inset:0;background:#e9bfa8;border-radius:8px;box-shadow:0 24px 50px rgba(120,60,40,.22)}
+.env-letter{left:8%;right:8%;top:6%;height:82%;background:#fffdf8;border-radius:4px;z-index:2;transition:transform .8s .35s var(--ease);padding:18px 16px;display:flex;flex-direction:column;gap:12px}
+.env-letter i{height:2px;background:rgba(216,41,61,.25);border-radius:2px}
+.env-letter i:nth-child(2){width:80%}.env-letter i:nth-child(3){width:90%}.env-letter i:nth-child(4){width:50%}
+.env-front{inset:0;background:#f6d8c6;border-radius:8px;z-index:3;clip-path:polygon(0 0,50% 56%,100% 0,100% 100%,0 100%)}
+.env-flap{left:0;right:0;top:0;height:58%;background:#efc4ad;z-index:4;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;transition:transform .6s var(--ease),z-index 0s;border-radius:8px 8px 0 0}
+.seal{z-index:6;left:50%;top:50%;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff5a6e,#c8102e);display:flex!important;align-items:center;justify-content:center;font-size:24px;box-shadow:0 6px 14px rgba(0,0,0,.25);animation:beat 1.4s ease-in-out infinite;transition:opacity .3s,transform .3s}
+.stk{z-index:7;font-size:34px;filter:drop-shadow(0 4px 6px rgba(0,0,0,.2));animation:wobble 3s ease-in-out infinite}
+.s1{left:-14px;bottom:-12px}.s2{right:-12px;top:-18px;animation-delay:.5s}
+.s3{right:8px;bottom:-14px;font-size:38px;animation-delay:1s}.s4{left:10px;top:-14px;font-size:26px;animation-delay:1.5s}
+.envelope.open{animation:none}
+.envelope.open .env-flap{transform:rotateX(180deg);z-index:1;transition:transform .6s var(--ease),z-index 0s .3s}
+.envelope.open .env-letter{transform:translateY(-52%)}
+.envelope.open .seal{opacity:0;transform:scale(.3)}
+.env-hint{font-size:11px;letter-spacing:.24em;font-weight:800;color:var(--muted);margin-top:22px;animation:pulse 1.8s ease-in-out infinite}
+@keyframes floaty{50%{transform:translateY(-10px) rotate(-1deg)}}
+@keyframes beat{50%{transform:scale(1.12)}}
+@keyframes wobble{50%{transform:rotate(12deg) scale(1.08)}}
+@keyframes pulse{50%{opacity:.35}}
+.letter-view{position:fixed;inset:0;z-index:480;background:rgba(15,14,13,.55);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:18px;opacity:0;pointer-events:none;transition:opacity .4s}
+.letter-view.open{opacity:1;pointer-events:auto}
+.letter-paper{position:relative;width:min(560px,100%);max-height:88dvh;overflow:auto;background:#fffdf6 repeating-linear-gradient(transparent 0 33px,rgba(216,41,61,.12) 33px 34px);border-radius:6px;padding:36px 32px 32px;box-shadow:0 40px 90px rgba(0,0,0,.35);transform:translateY(40px) rotate(-1.5deg) scale(.94);transition:transform .7s var(--ease)}
+.letter-view.open .letter-paper{transform:none}
+.letter-title{font-family:'Playfair Display',Georgia,serif;font-weight:900;font-size:clamp(28px,6vw,40px);color:var(--rose-dark);margin-bottom:14px}
+.lt{font-family:Georgia,serif;font-style:italic;font-size:clamp(16px,3.6vw,20px);line-height:34px;color:#2a2523;opacity:0;transform:translateY(12px);transition:.8s var(--ease)}
+.lt.strong{font-weight:700;color:var(--rose-dark)}
+.lt.show{opacity:1;transform:none}
+.letter-close{position:absolute;right:12px;top:8px;border:0;background:none;font-size:28px;cursor:pointer;color:#555}
 
 .final{background:#141312;color:#f6f2ea}
 .final .eyebrow{color:#aaa59d}
@@ -159,14 +177,23 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
 .close{position:absolute;right:18px;top:15px;border:0;background:none;font-size:22px;cursor:pointer;color:#fff}
 .toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);background:#171717;color:white;padding:12px 18px;border-radius:999px;font-size:11px;font-weight:800;z-index:600;opacity:0;pointer-events:none;transition:.35s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
-.petals{position:fixed;inset:0;pointer-events:none;z-index:450;overflow:hidden}
+.petals{position:fixed;inset:0;pointer-events:none;z-index:550;overflow:hidden}
 .petal{position:absolute;top:-30px;font-size:18px;animation:fall linear forwards}
 @keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:0}}
+/* Desktop memories: show every photo in a 2-column grid (no overlapping) */
+@media(min-width:901px){
+  .memory-stack{height:100%;max-height:100%;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:min-content;align-content:center;gap:22px 14px;padding:16px 8px;overflow-y:auto;scrollbar-width:none}
+  .memory-stack::-webkit-scrollbar{display:none}
+  .memory-stack .polaroid{position:relative;left:auto;right:auto;top:auto;bottom:auto;width:auto}
+  .memory-stack .polaroid img{height:auto;aspect-ratio:4/3}
+  .memory-stack .polaroid:nth-child(odd){transform:rotate(-3deg)}
+  .memory-stack .polaroid:nth-child(even){transform:rotate(3deg)}
+  .memory-stack .polaroid:nth-child(n):hover{transform:rotate(0) scale(1.08);z-index:5}
+}
 @media(max-width:900px){
   :root{--hh:68px}
   .header{padding:env(safe-area-inset-top,0px) 20px 0} .nav{display:none} .theme{width:38px;height:38px}
   .chapter{padding-left:22px;padding-right:22px}
-  /* home (mobile): girlfriend / portrait / best friend / countdown */
   #home .chapter-inner{display:flex;flex-direction:column;height:auto;min-height:100%}
   .hm{position:static;flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
   .hero{position:static;transform:none;height:auto;width:100%;max-height:38vh;object-fit:contain;order:2;min-height:0}
@@ -181,7 +208,7 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
   .bl{align-items:center}.br{justify-self:center}
   .count-num{font-size:22px}.count-item{min-width:50px}
   .progress{right:10px}
-  .story-grid,.for-grid,.us-wrap{grid-template-columns:1fr;gap:24px}
+  .story-grid,.for-grid{grid-template-columns:1fr;gap:24px}
   .section-layout{height:auto;min-height:100%}
   .timeline{height:auto;overflow:visible;padding-left:28px}
   .timeline-card h3{font-size:20px}
@@ -207,33 +234,32 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
   .for-center{display:none}
   .split-title{font-size:62px}
   .note strong{font-size:19px}
-  .quiz{min-height:0;padding:20px}
-  .choices{margin-top:20px}
   .final .rose-f,.final .sun-f{width:130px;top:12%;opacity:.25}
   .final-art{width:95vw}
   .final-line{font-size:clamp(20px,6vw,30px);margin:6px 0}.final-main{font-size:clamp(38px,12vw,56px)}
   .chapter-inner>.btn{position:static!important;margin:26px 0 40px;justify-self:start}
   .memory-center h2,.section-heading{font-size:clamp(46px,15vw,64px)}
   .section-description{margin-top:14px}
+  .env-wrap{padding-bottom:20px}
+  .letter-paper{padding:30px 22px 26px}
 }
 @media(min-width:901px) and (max-width:1180px){
   .story-grid,.for-grid{gap:5vw}.side .display{font-size:clamp(2.2rem,5.4vw,4.4rem)}
   .memories-grid{grid-template-columns:1fr 1.3fr 1fr;gap:16px}.polaroid img{height:170px}
-  .note strong{font-size:19px}.choice b{font-size:22px}
+  .note strong{font-size:19px}
 }
 @media(min-width:901px) and (max-height:700px){
   .section-heading,.split-title,.memory-center h2{font-size:clamp(44px,6vw,80px)}
-  .note{padding:11px 0}.note-list{margin-top:16px}.timeline-card{padding:12px 16px}.quiz{min-height:0}
+  .note{padding:11px 0}.note-list{margin-top:16px}.timeline-card{padding:12px 16px}
   .side .display{font-size:clamp(2rem,5vw,4.2rem)}.lede{margin:8px 0 12px}.memories-grid{height:68vh}
 }
 @media(max-width:900px) and (min-height:800px){.hero{max-height:46vh}}
 @media(max-width:900px) and (max-height:520px){.hero{max-height:none;height:80vh;width:auto;align-self:center}}
-@media(hover:none){.btn:hover,.timeline-card:hover,.note:hover,.choice:hover{transform:none;box-shadow:none}}
+@media(hover:none){.btn:hover,.timeline-card:hover,.note:hover{transform:none;box-shadow:none}}
 @media(prefers-reduced-motion:reduce){*,*:before{animation:none!important;transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
-<!-- Doodle flower symbols used on Home -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="d-rose" viewBox="0 0 100 120"><path d="M50 70V118" stroke="#5c8a5e" stroke-width="3" fill="none"/><path d="M50 100c-22-2-28-16-28-16s20-4 28 16z" fill="#7fae7f" stroke="#2a3a2a" stroke-width="2"/><circle cx="50" cy="42" r="30" fill="#c8102e" stroke="#3a1a22" stroke-width="2"/><path d="M50 42m-9 0a9 9 0 1 1 9 9a15 15 0 1 1-17-15" fill="none" stroke="#3a1a22" stroke-width="2.2" stroke-linecap="round"/></symbol>
   <symbol id="d-sun" viewBox="0 0 100 120"><path d="M50 70V118" stroke="#5c8a5e" stroke-width="3" fill="none"/><path d="M50 98c22-2 28-16 28-16s-20-4-28 16z" fill="#7fae7f" stroke="#2a3a2a" stroke-width="2"/><g fill="#f5c211" stroke="#4a3412" stroke-width="2"><ellipse cx="50" cy="16" rx="9" ry="15"/><ellipse cx="50" cy="16" rx="9" ry="15" transform="rotate(45 50 42)"/><ellipse cx="50" cy="16" rx="9" ry="15" transform="rotate(90 50 42)"/><ellipse cx="50" cy="16" rx="9" ry="15" transform="rotate(135 50 42)"/><ellipse cx="50" cy="16" rx="9" ry="15" transform="rotate(180 50 42)"/><ellipse cx="50" cy="16" rx="9" ry="15" transform="rotate(225 50 42)"/><ellipse cx="50" cy="16" rx="9" ry="15" transform="rotate(270 50 42)"/><ellipse cx="50" cy="16" rx="9" ry="15" transform="rotate(315 50 42)"/></g><circle cx="50" cy="42" r="14" fill="#6b3f17" stroke="#4a3412" stroke-width="2"/></symbol>
@@ -247,7 +273,7 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
     <button data-nav="1">STORY</button>
     <button data-nav="2">MEMORIES</button>
     <button data-nav="3">FOR YOU</button>
-    <button data-nav="4">US</button>
+    <button data-nav="4">LETTER</button>
     <button data-nav="5">FINAL</button>
   </nav>
   <button class="theme" id="themeBtn" aria-label="Toggle mood">☼</button>
@@ -258,7 +284,7 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
   <button data-dot="1" aria-label="Our Story"></button>
   <button data-dot="2" aria-label="Memories"></button>
   <button data-dot="3" aria-label="For You"></button>
-  <button data-dot="4" aria-label="Us"></button>
+  <button data-dot="4" aria-label="Letter"></button>
   <button data-dot="5" aria-label="Final"></button>
 </div>
 
@@ -334,7 +360,7 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
       <div class="memory-center">
         <div class="memory-label rose">A COLLECTION OF MOMENTS</div>
         <h2 class="display">Moments<br>we keep.</h2>
-        <p>Replace the placeholder photographs with your real memories. Keep the captions personal, funny, or completely random.</p>
+        <p>The moments we fell in love </p>
         <button class="btn" data-next="3">NEXT CHAPTER →</button>
       </div>
       <div class="strip-label sl-b"><b>🌻 BEST FRIEND</b><span>swipe →</span></div>
@@ -381,30 +407,24 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
   </div>
 </section>
 
-<!-- US -->
+<!-- LOVE LETTER -->
 <section class="chapter" id="us">
   <div class="chapter-inner section-layout">
-    <div class="us-wrap">
-      <div>
-        <div class="eyebrow">05 / US</div>
-        <h2 class="display section-heading">Just<br>us.</h2>
-        <p class="section-description">A tiny collection of questions, choices and inside jokes that only make sense because they're ours.</p>
-        <div class="choices">
-          <div class="choice rose"><b>Movie Night</b><small>quiet, cozy, snacks.</small><span class="emoji">🌹</span></div>
-          <div class="choice sun"><b>Long Drive</b><small>music, talking, nowhere to be.</small><span class="emoji">🌻</span></div>
-        </div>
-      </div>
-      <div class="quiz">
-        <div class="eyebrow">HOW WELL DO YOU KNOW US?</div>
-        <h3 id="quizQuestion">Who sends more random messages?</h3>
-        <div class="answers" id="answers">
-          <button class="answer" data-correct="false">Me</button>
-          <button class="answer" data-correct="true">Her</button>
-          <button class="answer" data-correct="false">Both</button>
-        </div>
-        <div class="quiz-result" id="quizResult"></div>
-        <button class="btn light" id="nextQuiz">NEXT QUESTION →</button>
-      </div>
+    <div class="env-wrap">
+      <div class="eyebrow rose">05 / A LETTER FOR YOU</div>
+      <h2 class="display section-heading" style="line-height:.95">You've got<br>mail.</h2>
+      <button class="envelope" id="envelope" aria-label="Open the letter">
+        <span class="env-back"></span>
+        <span class="env-letter"><i></i><i></i><i></i><i></i></span>
+        <span class="env-front"></span>
+        <span class="env-flap"></span>
+        <span class="seal">❤️</span>
+        <span class="stk s1">🌻</span>
+        <span class="stk s2">🌹</span>
+        <span class="stk s3">🧸</span>
+        <span class="stk s4">✨</span>
+      </button>
+      <div class="env-hint">tap the envelope ♥</div>
     </div>
     <button class="btn" data-next="5" style="position:absolute;right:0;bottom:25px">OPEN THE LAST CHAPTER →</button>
   </div>
@@ -450,6 +470,19 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
   </div>
 </div>
 
+<div class="letter-view" id="letterView" aria-hidden="true">
+  <div class="letter-paper">
+    <button class="letter-close" id="letterClose" aria-label="Close letter">×</button>
+    <div class="letter-title">Happy Birthday 🎂</div>
+    <p class="lt">Here I am, wishing a very happy birthday to my favourite person.</p>
+    <p class="lt">The person with whom I feel best every single day. Till I am with her, the day feels like an hour.</p>
+    <p class="lt">She is absolute chaos. She never misses a chance to irritate me, but that is only one part of her.</p>
+    <p class="lt">She loves me, takes care of me, and yes, she shouts at me too.</p>
+    <p class="lt">I can't expect a best college life without her.</p>
+    <p class="lt strong">She is the best thing I found in college. 🌹🌻</p>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 <div class="petals" id="petals"></div>
 
@@ -466,14 +499,14 @@ const navs = [...document.querySelectorAll("[data-nav]")];
 let current = 0;
 let transitioning = false;
 let targetLocked = null;
-let unlocked = false;   // becomes true after the correct code is entered once
+let unlocked = false;
 
 const EASE = "cubic-bezier(.65,0,.25,1)", DUR = 850;
 function setChapter(next, direction = 1) {
   if (next < 0 || next >= chapters.length || next === current || transitioning) return;
   transitioning = true;
   const old = chapters[current], inc = chapters[next], fwd = direction > 0;
-  const top = fwd ? inc : old, under = fwd ? old : inc;   // forward: new card slides over; back: current card slides away
+  const top = fwd ? inc : old, under = fwd ? old : inc;
   inc.scrollTop = 0;
   [old, inc].forEach(c => c.classList.add("moving"));
   top.classList.add("lift"); top.style.zIndex = 30; under.style.zIndex = 20;
@@ -496,7 +529,7 @@ function setChapter(next, direction = 1) {
 
 function requestChapter(next) {
   if (next === current) return;
-  if (next > current && !unlocked) {   // passcode is only needed once: Home → Story
+  if (next > current && !unlocked) {
     targetLocked = next;
     openModal();
   } else if (next > current) {
@@ -522,12 +555,12 @@ navs.forEach(btn => btn.addEventListener("click", () => {
 dots.forEach(btn => btn.addEventListener("click", () => requestChapter(Number(btn.dataset.dot))));
 
 function canScroll(dir){const c=chapters[current];return dir>0?c.scrollTop+c.clientHeight<c.scrollHeight-4:c.scrollTop>4}
-const modalOpen=()=>document.getElementById("lockModal").classList.contains("open");
+const modalOpen=()=>document.getElementById("lockModal").classList.contains("open")||document.getElementById("letterView").classList.contains("open");
 let wheelLock=false,lastScroll=0;
 window.addEventListener("wheel",e=>{
   if(wheelLock||modalOpen()||Math.abs(e.deltaY)<25)return;
   const dir=e.deltaY>0?1:-1;
-  if(canScroll(dir)){lastScroll=Date.now();return}   // let tall chapters scroll first
+  if(canScroll(dir)){lastScroll=Date.now();return}
   if(Date.now()-lastScroll<600)return;
   wheelLock=true;
   if(dir>0){if(current<chapters.length-1)requestChapter(current+1)}else if(current>0)setChapter(current-1,-1);
@@ -542,13 +575,14 @@ window.addEventListener("touchstart",e=>{
 window.addEventListener("touchend",e=>{
   if(modalOpen())return;
   const dy=tY-e.changedTouches[0].clientY,dx=tX-e.changedTouches[0].clientX;
-  if(Math.abs(dy)<60||Math.abs(dy)<Math.abs(dx)*1.2)return;   // ignore short or sideways swipes
+  if(Math.abs(dy)<60||Math.abs(dy)<Math.abs(dx)*1.2)return;
   if(dy>0){if(atBottom&&current<chapters.length-1)requestChapter(current+1)}
   else if(atTop&&current>0)setChapter(current-1,-1);
 },{passive:true});
 
 document.addEventListener("keydown", e => {
   if (["INPUT","TEXTAREA"].includes(document.activeElement.tagName)) return;
+  if (modalOpen()) { if (e.key === "Escape") { closeLetter(); } return; }
   if (e.key === "ArrowDown" || e.key === "PageDown") {
     e.preventDefault();
     if (current < chapters.length-1) requestChapter(current+1);
@@ -601,7 +635,7 @@ function unlock() {
       const destination = targetLocked;
       closeModal();
       modalError.style.color = "";
-      if (destination !== null) setTimeout(()=>setChapter(destination,1),320);   // wait for the modal to fade
+      if (destination !== null) setTimeout(()=>setChapter(destination,1),320);
     },350);
   } else {
     modalError.textContent = "Not quite... try again ❤️";
@@ -623,6 +657,7 @@ function updateCountdown() {
   let diff = target - now;
 
   if (diff <= 0) {
+    maybeShower();
     document.querySelector(".count-label").textContent = "06 OCTOBER · TODAY IS YOUR DAY";
     document.getElementById("countdown").innerHTML = '<div style="font-family:\'Playfair Display\',Georgia,serif;font-size:25px">IT’S YOUR DAY ♥</div>';
     return;
@@ -636,6 +671,30 @@ function updateCountdown() {
   document.getElementById("minutes").textContent = String(m).padStart(2,"0");
   document.getElementById("seconds").textContent = String(s).padStart(2,"0");
 }
+
+// Petal shower
+function petalShower(count=45){
+  const box=document.getElementById("petals"), set=["🌸","🌹","🌻","🌷","💮"];
+  for(let i=0;i<count;i++){
+    const p=document.createElement("span");
+    p.className="petal";
+    p.textContent=set[i%set.length];
+    p.style.left=Math.random()*100+"vw";
+    p.style.fontSize=(16+Math.random()*16)+"px";
+    p.style.animationDuration=(5+Math.random()*5)+"s";
+    p.style.animationDelay=Math.random()*3.5+"s";
+    box.appendChild(p);
+    setTimeout(()=>p.remove(),12000);
+  }
+}
+// Shower once: the first time the site is open at/after the birthday moment
+let showered=false;
+function maybeShower(){
+  if(showered)return; showered=true;
+  try{ if(localStorage.getItem("petalsShown"))return; localStorage.setItem("petalsShown","1"); }catch(e){}
+  petalShower(60);
+}
+
 updateCountdown();
 setInterval(updateCountdown,1000);
 
@@ -649,39 +708,25 @@ const home = document.getElementById("home");
 
 document.querySelectorAll(".polaroid img").forEach(i=>{i.loading="lazy";i.decoding="async"});
 
-// Quiz
-const quiz = [
-  {q:"Who sends more random messages?", a:["Me","Her","Both"], c:1},
-  {q:"Who is more dramatic?", a:["Me","Her","It depends 😂"], c:2},
-  {q:"Who would survive longer without talking?", a:["Me","Her","Neither"], c:2},
-  {q:"Who is more likely to start an inside joke?", a:["Me","Her","Both"], c:2}
-];
-let qi=0;
-function renderQuiz() {
-  const item=quiz[qi];
-  document.getElementById("quizQuestion").textContent=item.q;
-  const wrap=document.getElementById("answers");
-  wrap.innerHTML="";
-  item.a.forEach((x,i)=>{
-    const b=document.createElement("button");
-    b.className="answer";
-    b.textContent=x;
-    b.onclick=()=>{
-      const r=document.getElementById("quizResult");
-      r.textContent=i===item.c ? "YOU KNOW US TOO WELL ❤️" : "Nice try 😂";
-      r.style.color=i===item.c ? "#687a54" : "#d8293d";
-    };
-    wrap.appendChild(b);
-  });
+// Love letter
+const envelope=document.getElementById("envelope"), letterView=document.getElementById("letterView");
+const letterLines=[...document.querySelectorAll(".lt")];
+envelope.addEventListener("click",()=>{
+  if(envelope.classList.contains("open"))return;
+  envelope.classList.add("open");
+  setTimeout(()=>{
+    letterView.classList.add("open");letterView.setAttribute("aria-hidden","false");
+    letterLines.forEach((l,i)=>setTimeout(()=>l.classList.add("show"),500+i*1100));
+    petalShower(14);
+  },1100);
+});
+function closeLetter(){
+  letterView.classList.remove("open");letterView.setAttribute("aria-hidden","true");
+  envelope.classList.remove("open");
+  letterLines.forEach(l=>l.classList.remove("show"));
 }
-document.getElementById("nextQuiz").addEventListener("click",()=>{qi=(qi+1)%quiz.length;renderQuiz();document.getElementById("quizResult").textContent=""});
-renderQuiz();
-
-// Choices
-document.querySelectorAll(".choice").forEach(c=>c.addEventListener("click",()=>{
-  c.animate([{transform:"scale(1)"},{transform:"scale(1.03)"},{transform:"scale(1)"}],{duration:380});
-  showToast("Good choice. I’d pick both. ♥");
-}));
+document.getElementById("letterClose").addEventListener("click",closeLetter);
+letterView.addEventListener("click",e=>{if(e.target===letterView)closeLetter()});
 
 // Final reveal
 function revealFinal() {
@@ -707,25 +752,6 @@ function showToast(text) {
   t.textContent=text;t.classList.add("show");
   setTimeout(()=>t.classList.remove("show"),1600);
 }
-
-// Birthday celebration if opened on birthday
-function birthdayCelebration() {
-  const now=new Date(), target=new Date(SITE_CONFIG.birthday);
-  if(now.getFullYear()===target.getFullYear() && now.getMonth()===target.getMonth() && now.getDate()===target.getDate()) {
-    const petals=document.getElementById("petals");
-    for(let i=0;i<30;i++){
-      const p=document.createElement("span");
-      p.className="petal";
-      p.textContent=i%2?"🌻":"🌹";
-      p.style.left=Math.random()*100+"vw";
-      p.style.animationDuration=(4+Math.random()*5)+"s";
-      p.style.animationDelay=Math.random()*3+"s";
-      petals.appendChild(p);
-      setTimeout(()=>p.remove(),10000);
-    }
-  }
-}
-birthdayCelebration();
 </script>
 </body>
-</html>0
+</html>
